@@ -19,19 +19,19 @@ class CartScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppbar(title: 'cart'),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.black,
+        color: Colors.blueGrey,
         child: Container(
           height: 70,
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             ElevatedButton(
-                style: ElevatedButton.styleFrom(primary: Colors.white),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
                 onPressed: () {
                   Navigator.pushNamed(context, '/checkout');
                 },
                 child: Text(
                   'Proceed to checkout',
-                  style: Theme.of(context).textTheme.headline3!,
+                  style: Theme.of(context).textTheme.displaySmall!,
                 ))
           ]),
         ),
@@ -57,21 +57,21 @@ class CartScreen extends StatelessWidget {
                         children: [
                           Text(
                             state.cart.freeDeliveryString,
-                            style: Theme.of(context).textTheme.headline3!,
+                            style: Theme.of(context).textTheme.displaySmall!,
                           ),
                           ElevatedButton(
                             onPressed: () {
                               Navigator.pushNamed(context, '/home');
                             },
                             style: ElevatedButton.styleFrom(
-                                primary: Colors.black,
+                                backgroundColor: Colors.black,
                                 shape: RoundedRectangleBorder(),
                                 elevation: 0),
                             child: Text(
                               'Add more Item',
                               style: Theme.of(context)
                                   .textTheme
-                                  .headline4!
+                                  .headlineMedium!
                                   .copyWith(color: Colors.white),
                             ),
                           ),

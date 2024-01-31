@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_now/blocks/wishlist_bloc.dart';
-import 'package:shop_now/config/theme.dart';
 
 import '../../widgets/widget.dart';
 
@@ -53,7 +52,7 @@ class WatchlistScreen extends StatelessWidget {
               'something wrong',
               style: Theme.of(context)
                   .textTheme
-                  .bodyText1!
+                  .bodyLarge!
                   .copyWith(color: Colors.black),
             );
           }

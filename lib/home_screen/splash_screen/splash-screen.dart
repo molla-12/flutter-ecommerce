@@ -1,9 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shop_now/home_screen/home_screen/home_screen.dart';
 
@@ -99,7 +95,7 @@ class _IntroPageState extends State<IntroPage> with TickerProviderStateMixin {
           ),
         ),
         LottieBuilder.asset(
-          'assets/e2.json',
+          'assets/food.json',
           onLoaded: (composition) {
             _lottieAnimation..duration = composition.duration;
           },

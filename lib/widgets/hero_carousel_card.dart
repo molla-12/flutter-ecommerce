@@ -16,7 +16,7 @@ class HeroCarouselCard extends StatelessWidget {
         }
       },
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 23),
+        margin: EdgeInsets.symmetric(horizontal: 1.0, vertical: 23),
         child: ClipRRect(
           borderRadius: BorderRadius.all(Radius.circular(5.0)),
           child: Stack(
@@ -45,7 +45,7 @@ class HeroCarouselCard extends StatelessWidget {
                   child: Text(product == null ? category!.name : '',
                       style: Theme.of(context)
                           .textTheme
-                          .headline4!
+                          .headlineMedium!
                           .copyWith(color: Colors.white)),
                 ),
               ),

@@ -26,10 +26,10 @@ class CartProductCard extends StatelessWidget {
               children: [
                 Text(
                   product.name,
-                  style: Theme.of(context).textTheme.headline2,
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
                 Text('\$${product.price}',
-                    style: Theme.of(context).textTheme.headline3)
+                    style: Theme.of(context).textTheme.displaySmall)
               ],
             ),
           ),
@@ -47,7 +47,7 @@ class CartProductCard extends StatelessWidget {
                       icon: Icon(Icons.remove_circle)),
                   Text(
                     '$quantity',
-                    style: Theme.of(context).textTheme.headline4,
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   IconButton(
                       onPressed: () {

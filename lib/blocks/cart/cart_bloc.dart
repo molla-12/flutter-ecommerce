@@ -5,7 +5,6 @@ import 'package:equatable/equatable.dart';
 import 'package:shop_now/models/cart_model.dart';
 import 'package:shop_now/models/models.dart';
 
-import '../../models/cart_model.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';

@@ -8,13 +8,14 @@ class CustomBottomAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      color: Colors.black,
+      color: Colors.blueGrey,
       child: Container(
         height: 70,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton(
+              iconSize: 30,
               onPressed: () {
                 Navigator.pushNamed(context, '/home');
               },
@@ -24,11 +25,13 @@ class CustomBottomAppbar extends StatelessWidget {
               ),
             ),
             IconButton(
+                iconSize: 30,
                 onPressed: () {
                   Navigator.pushNamed(context, '/cart');
                 },
                 icon: const Icon(Icons.shopping_cart, color: Colors.white)),
             IconButton(
+                iconSize: 30,
                 onPressed: () {
                   Navigator.pushNamed(context, '/profile');
                 },

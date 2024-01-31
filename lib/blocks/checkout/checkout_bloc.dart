@@ -8,7 +8,6 @@ import 'package:shop_now/models/checkout_model.dart';
 import 'package:shop_now/models/models.dart';
 import 'package:shop_now/repository/checkout/checkout.dart';
 
-import '../../models/cart_model.dart';
 
 part 'checkout_event.dart';
 part 'checkout_state.dart';

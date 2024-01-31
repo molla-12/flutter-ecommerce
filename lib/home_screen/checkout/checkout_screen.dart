@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../blocks/cart/cart_bloc.dart';
 import '../../blocks/checkout/checkout_bloc.dart';
 import '../../widgets/widget.dart';
 
@@ -28,7 +27,7 @@ class CheckoutScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppbar(title: 'checkout'),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.black,
+        color: Colors.blueGrey,
         child: Container(
           height: 70,
           child:
@@ -41,7 +40,8 @@ class CheckoutScreen extends StatelessWidget {
               }
               if (state is CheckoutLoaded) {
                 return ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: Colors.white),
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
                     onPressed: () {
                       context
                           .read<CheckoutBloc>()
@@ -49,7 +49,7 @@ class CheckoutScreen extends StatelessWidget {
                     },
                     child: Text(
                       'Order now',
-                      style: Theme.of(context).textTheme.headline3!,
+                      style: Theme.of(context).textTheme.displaySmall!,
                     ));
               } else {
                 return Text('hhh');
@@ -58,67 +58,71 @@ class CheckoutScreen extends StatelessWidget {
           ]),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.all(8.0),
-        child:
-            BlocBuilder<CheckoutBloc, CheckoutState>(builder: (context, state) {
-          if (state is CheckoutLoading) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (state is CheckoutLoaded) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Personal informatio',
-                  style: Theme.of(context).textTheme.headline2!,
-                ),
-                _buildTextFormField((value) {
-                  context
-                      .read<CheckoutBloc>()
-                      .add(UpdateCheckout(email: value));
-                }, context, 'email'),
-                _buildTextFormField((value) {
-                  context
-                      .read<CheckoutBloc>()
-                      .add(UpdateCheckout(fullname: value));
-                }, context, 'fullname'),
-                Text(
-                  'Delivery info informatio',
-                  style: Theme.of(context).textTheme.headline2!,
-                ),
-                _buildTextFormField((value) {
-                  context
-                      .read<CheckoutBloc>()
-                      .add(UpdateCheckout(address: value));
-                }, context, 'address'),
-                _buildTextFormField((value) {
-                  context.read<CheckoutBloc>().add(UpdateCheckout(city: value));
-                }, context, 'city'),
-                _buildTextFormField((value) {
-                  context
-                      .read<CheckoutBloc>()
-                      .add(UpdateCheckout(country: value));
-                }, context, 'country'),
-                _buildTextFormField((value) {
-                  context
-                      .read<CheckoutBloc>()
-                      .add(UpdateCheckout(zipcode: value));
-                }, context, 'zipcode'),
-                Text(
-                  'order summery informatio',
-                  style: Theme.of(context).textTheme.headline2!,
-                ),
-                OrderSummery(),
-              ],
-            );
-          } else {
-            return Text('error on loading');
-          }
-        }),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.all(8.0),
+          child: BlocBuilder<CheckoutBloc, CheckoutState>(
+              builder: (context, state) {
+            if (state is CheckoutLoading) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (state is CheckoutLoaded) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Personal informatio',
+                    style: Theme.of(context).textTheme.displayMedium!,
+                  ),
+                  _buildTextFormField((value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(email: value));
+                  }, context, 'email'),
+                  _buildTextFormField((value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(fullname: value));
+                  }, context, 'fullname'),
+                  Text(
+                    'Delivery info informatio',
+                    style: Theme.of(context).textTheme.displayMedium!,
+                  ),
+                  _buildTextFormField((value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(address: value));
+                  }, context, 'address'),
+                  _buildTextFormField((value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(city: value));
+                  }, context, 'city'),
+                  _buildTextFormField((value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(country: value));
+                  }, context, 'country'),
+                  _buildTextFormField((value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(zipcode: value));
+                  }, context, 'zipcode'),
+                  Text(
+                    'Order summery',
+                    style: Theme.of(context).textTheme.displayMedium!,
+                  ),
+                  OrderSummery(),
+                ],
+              );
+            } else {
+              return Text('error on loading');
+            }
+          }),
+        ),
       ),
     );
   }
@@ -133,13 +137,17 @@ class CheckoutScreen extends StatelessWidget {
       child: Row(children: [
         SizedBox(
           width: 75,
-          child: Text(labelText, style: Theme.of(context).textTheme.headline2),
+          child: Text(labelText[0].toUpperCase() + labelText.substring(1),
+              style: Theme.of(context).textTheme.displayMedium),
         ),
         Expanded(
           child: TextFormField(
             onChanged: onChanged,
             decoration: InputDecoration(
-                isDense: true, contentPadding: EdgeInsets.only(left: 12.0)),
+                border: OutlineInputBorder(),
+                isDense: false,
+                hintText: labelText.toUpperCase(),
+                contentPadding: EdgeInsets.only(left: 12.0)),
           ),
         )
       ]),

@@ -48,13 +48,14 @@ class ProductScreen extends StatelessWidget {
             BlocBuilder<CartBloc, CartState>(
               builder: (context, state) {
                 return ElevatedButton(
-                    style: ElevatedButton.styleFrom(primary: Colors.white),
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
                     onPressed: () {
                       context.read<CartBloc>().add(CartProductAdded(product));
                     },
                     child: Text(
                       'Add To Cart',
-                      style: Theme.of(context).textTheme.headline3!,
+                      style: Theme.of(context).textTheme.displaySmall!,
                     ));
               },
             )
@@ -98,14 +99,14 @@ class ProductScreen extends StatelessWidget {
                           product.name,
                           style: Theme.of(context)
                               .textTheme
-                              .headline3!
+                              .displaySmall!
                               .copyWith(color: Colors.white),
                         ),
                         Text(
                           '\$${product.price}',
                           style: Theme.of(context)
                               .textTheme
-                              .headline3!
+                              .displaySmall!
                               .copyWith(color: Colors.white),
                         )
                       ],
@@ -118,7 +119,7 @@ class ProductScreen extends StatelessWidget {
           ExpansionTile(
             initiallyExpanded: true,
             title: Text('Product information',
-                style: Theme.of(context).textTheme.headline2),
+                style: Theme.of(context).textTheme.displayMedium),
             children: [
               ListTile(
                 title: Text(
@@ -129,7 +130,7 @@ class ProductScreen extends StatelessWidget {
           ExpansionTile(
             initiallyExpanded: true,
             title: Text('shipping information',
-                style: Theme.of(context).textTheme.headline2),
+                style: Theme.of(context).textTheme.displayMedium),
             children: [
               const ListTile(
                 title: Text(

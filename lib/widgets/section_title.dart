@@ -13,7 +13,7 @@ class SectionTitle extends StatelessWidget {
         child: Text(title,
             style: Theme.of(context)
                 .textTheme
-                .headline3!
+                .displaySmall!
                 .copyWith(color: Colors.black)),
       ),
     );

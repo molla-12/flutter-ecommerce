@@ -21,9 +21,9 @@ class OrderSummery extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('SubTotal',
-                          style: Theme.of(context).textTheme.headline2!),
+                          style: Theme.of(context).textTheme.displayMedium!),
                       Text('\$${state.cart.subtotalString}',
-                          style: Theme.of(context).textTheme.headline2!)
+                          style: Theme.of(context).textTheme.displayMedium!)
                     ],
                   ),
                   const SizedBox(height: 10),
@@ -31,9 +31,9 @@ class OrderSummery extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text('Delivery Fee',
-                          style: Theme.of(context).textTheme.headline2!),
+                          style: Theme.of(context).textTheme.displayMedium!),
                       Text('\$${state.cart.deliveryFeeString}',
-                          style: Theme.of(context).textTheme.headline2!)
+                          style: Theme.of(context).textTheme.displayMedium!)
                     ],
                   )
                 ],
@@ -60,13 +60,13 @@ class OrderSummery extends StatelessWidget {
                           'price',
                           style: Theme.of(context)
                               .textTheme
-                              .headline2!
+                              .displayMedium!
                               .copyWith(color: Colors.white),
                         ),
                         Text('\$${state.cart.totalString}',
                             style: Theme.of(context)
                                 .textTheme
-                                .headline2!
+                                .displayMedium!
                                 .copyWith(color: Colors.white))
                       ],
                     ),

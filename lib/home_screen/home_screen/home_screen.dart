@@ -22,66 +22,60 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppbar(title: 'ET Shop Now'),
       bottomNavigationBar: CustomBottomAppbar(),
-      body: Column(
-        children: [
-          BlocBuilder<CategoryBloc, CategoryState>(
-            builder: (context, state) {
-              if (state is CategoryLoading) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              if (state is CategoryLoaded) {
-                return Container(
-                  child: CarouselSlider(
-                    options: CarouselOptions(
-                      aspectRatio: 1.5,
-                      viewportFraction: 0.9,
-                      enlargeStrategy: CenterPageEnlargeStrategy.height,
-                    ),
-                    items: state.categories
-                        .map((category) => HeroCarouselCard(category: category))
-                        .toList(),
-                  ),
-                );
-              } else {
-                return const Text('No product list found');
-              }
-            },
-          ),
-          const SectionTitle(title: 'Recomanded Products'),
-          BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
-            if (state is ProductLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            if (state is ProductLoaded) {
-              return ProductCarousel(
-                  products: state.product
-                      .where((product) => product.isRecomanded)
-                      .toList());
-            } else {
-              return const Text('No Recomanded Product found');
-            }
-          }),
-          const SectionTitle(title: 'Popular Products'),
-          BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
-            if (state is ProductLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            if (state is ProductLoaded) {
-              return ProductCarousel(
-                  products: state.product
-                      .where((product) => product.isPopular)
-                      .toList());
-            } else {
-              return const Text('No Porpular product found');
-            }
-          }),
-        ],
+      body: BlocBuilder<CategoryBloc, CategoryState>(
+        builder: (context, categoryState) {
+          if (categoryState is CategoryLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (categoryState is CategoryLoaded) {
+            return BlocBuilder<ProductBloc, ProductState>(
+              builder: (context, productState) {
+                if (productState is ProductLoading) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (productState is ProductLoaded) {
+                  return Column(
+                    children: [
+                      Container(
+                        child: CarouselSlider(
+                          options: CarouselOptions(
+                            aspectRatio: 1.5,
+                            viewportFraction: 0.9,
+                            autoPlay: true,
+                            enlargeCenterPage: true,
+                            enlargeStrategy: CenterPageEnlargeStrategy.height,
+                          ),
+                          items: categoryState.categories
+                              .map((category) =>
+                                  HeroCarouselCard(category: category))
+                              .toList(),
+                        ),
+                      ),
+                      const SectionTitle(title: 'Popular'),
+                      ProductCarousel(
+                        products: productState.product
+                            .where((product) => product.isPopular)
+                            .toList(),
+                      ),
+                      const SectionTitle(title: 'Recomanded'),
+                      ProductCarousel(
+                        products: productState.product
+                            .where((product) => product.isRecomanded)
+                            .toList(),
+                      ),
+                    ],
+                  );
+                } else {
+                  return const Text('No products found');
+                }
+              },
+            );
+          } else {
+            return const Text('No categories found');
+          }
+        },
       ),
     );
   }
