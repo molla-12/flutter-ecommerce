@@ -1,10 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_now/blocks/blog/blog_bloc.dart';
 import 'package:shop_now/blocks/wishlist_bloc.dart';
 import 'package:shop_now/config/app_router.dart';
 import 'package:shop_now/config/theme.dart';
 import 'package:shop_now/home_screen/splash_screen/splash-screen.dart';
+import 'package:shop_now/repository/blog/blog_repo.dart';
 import 'package:shop_now/repository/category/category_repo.dart';
 import 'package:shop_now/repository/checkout/checkout.dart';
 import 'package:shop_now/repository/product/product_repo.dart';
@@ -37,6 +39,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (_) => ProductBloc(productRepository: ProductRepository())
               ..add(LoadProduct())),
+        BlocProvider(
+          create: (_) =>
+              BlogBloc(blogRepository: BlogRepository())..add(LoadBlog()),
+        ),
         BlocProvider(
           create: (context) => CheckoutBloc(
             cartBloc: context.read<CartBloc>(),

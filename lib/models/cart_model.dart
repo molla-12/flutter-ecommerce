@@ -9,11 +9,13 @@ class Cart extends Equatable {
   double get subtotal =>
       products.fold(0, (total, current) => total + current.price);
 
+  double get tax => subtotal * 0.15;
+
   String freeDeleivery(subtotal) {
-    if (subtotal >= 30.0) {
+    if (subtotal >= 100.0) {
       return 'you have free deleivery';
     } else {
-      double missing = 30.0 - subtotal;
+      double missing = 100.0 - subtotal;
       return 'ADD \$${missing.toStringAsFixed(2)} for Free deliver';
     }
   }

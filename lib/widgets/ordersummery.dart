@@ -33,6 +33,10 @@ class OrderSummery extends StatelessWidget {
                       Text('Delivery Fee',
                           style: Theme.of(context).textTheme.displayMedium!),
                       Text('\$${state.cart.deliveryFeeString}',
+                          style: Theme.of(context).textTheme.displayMedium!),
+                      Text('Tax Fee',
+                          style: Theme.of(context).textTheme.displayMedium!),
+                      Text('\$${state.cart.tax}',
                           style: Theme.of(context).textTheme.displayMedium!)
                     ],
                   )
